@@ -6,8 +6,15 @@ class Pokemon extends React.Component {
         this.state = {
             name:props.data.name,
             frontImage:props.data.sprites.front,
-            backImage:props.data.sprites.back
+            backImage:props.data.sprites.back,
+            displayFront:true
         }
+    }
+
+    handleClick = (e) => {
+        this.setState({
+            displayFront:!this.state.displayFront
+        })
     }
     
     render() {
@@ -17,10 +24,10 @@ class Pokemon extends React.Component {
                 <h1 className="center-text">{this.state.name}</h1>
                 <div style={ {width:239, margin:'auto'} }>
                 <div style={ {width:96,margin:'auto'} }>
-                    <img src={this.state.frontImage} />
+                    <img src={this.state.displayFront? this.state.frontImage : this.state.backImage} />
                 </div>
                 </div>
-                <p style={{padding:10}} className="center-text flip-image" data-pokename="ivysaur" data-action="flip-image">flip card</p>
+                <p onClick={this.handleClick} style={{padding:10}} className="center-text flip-image" data-pokename="ivysaur" data-action="flip-image">flip card</p>
                 </div>
             </div>
         )
